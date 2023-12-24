@@ -4,6 +4,7 @@ const appContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [themeToggle, setThemeToggle] = useState(false);
+  const [search, setSearch] = useState("mountains");
 
   const changeTheme = () => {
     const newTheme = !themeToggle;
@@ -13,7 +14,11 @@ const AppProvider = ({ children }) => {
     body.classList.toggle("dark-theme", newTheme);
   };
 
-  return <appContext.Provider value={{themeToggle,changeTheme}} >{children}</appContext.Provider>;
+  return (
+    <appContext.Provider value={{ themeToggle, changeTheme,search,setSearch }}>
+      {children}
+    </appContext.Provider>
+  );
 };
 
 export const useGlobalContext = () => useContext(appContext);
